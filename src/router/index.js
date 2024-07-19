@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ProductionListView from '../views/ProductionListView.vue'
 import ProductionDetails from '../views/ProductionDetails.vue'
+import FormView from '../views/FormView.vue'
 import AboutView from '@/views/AboutView.vue'
 
 const router = createRouter({
@@ -21,6 +22,11 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: AboutView
+    },
+    {
+      path: '/form',
+      name: 'form',
+      component: FormView
     }
   ]
 })
