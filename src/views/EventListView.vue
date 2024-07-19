@@ -1,10 +1,19 @@
 <script setup>
+import { ref, onMounted } from 'vue'
+import EventService from '@/services/EventService.js'
 import EventCard from '@/components/EventCard.vue'
-import { ref } from 'vue'
 
-const events = ref([
-  
-])
+const events = ref(null)
+
+onMounted(() => {
+  EventService.getEvents()
+    .then((response) => {
+      events.value = response.data
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+})
 </script>
 
 <template>
@@ -15,7 +24,7 @@ const events = ref([
 </template>
 
 <style scoped>
-.events{
+.events {
   display: flex;
   flex-direction: column;
   align-items: center;

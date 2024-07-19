@@ -5,13 +5,13 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <div id="layout">
     <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Events</RouterLink> |
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
+      <div class="wrapper">
+        <nav>
+          <RouterLink :to="{ name: 'event-list' }">Events</RouterLink> |
+          <RouterLink :to="{ name: 'about' }">About</RouterLink>
+        </nav>
+      </div>
+    </header>
   </div>
   <RouterView />
 </template>
@@ -34,7 +34,7 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
-h1{
+h1 {
   text-align: center;
 }
 h2 {
