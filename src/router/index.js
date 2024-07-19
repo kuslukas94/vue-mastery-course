@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ProductionListView from '../views/RepertoirListView.vue'
+import ProductionListView from '../views/ProductionListView.vue'
 import ProductionDetails from '../views/ProductionDetails.vue'
 import AboutView from '@/views/AboutView.vue'
 

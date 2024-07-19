@@ -14,7 +14,8 @@ defineProps({
   >
     <div class="production-card">
       <h2>{{ production.title }}</h2>
-      <span>@{{ production.time }} on {{ production.date }}</span>
+      <span>{{ production.category }} , Duration: {{ production.duration }}</span>
+      <span>{{ production.location }}</span>
     </div>
   </RouterLink>
 </template>
