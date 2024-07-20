@@ -17,17 +17,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>Repertoir</h1>
-  <div class="productions">
-    <ProductionCard
-      v-for="production in productions"
-      :key="production.id"
-      :production="production"
-    />
+  <div id="layout-productionList">
+    <h1>Repertoir</h1>
+    <div class="productions">
+      <ProductionCard
+        v-for="production in productions"
+        :key="production.id"
+        :production="production"
+      />
+    </div>
   </div>
 </template>
 
 <style scoped>
+#layout-productionList {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 .productions {
   display: flex;
   flex-direction: column;

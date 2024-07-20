@@ -22,7 +22,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="production">
+  <div id="layout-productionDetails" v-if="production">
     <h1>{{ production.title }}</h1>
     <p>{{ production.category }}</p>
     <p>{{ production.duration }}</p>
@@ -32,6 +32,11 @@ onMounted(() => {
 </template>
 
 <style scoped>
+#layout-productionDetails {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 p {
   text-align: center;
 }
