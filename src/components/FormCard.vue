@@ -1,34 +1,29 @@
-<script>
-import axios from 'axios'
+<script setup>
+import { ref } from 'vue'
+import ProductionService from '@/services/ProductionService.js'
 import myUUID from '../stores/UUID'
 
-export default {
-  data() {
-    return {
-      productions: [
-        {
-          id: myUUID(),
-          title: '',
-          category: '',
-          duration: '',
-          location: ['Big scene', 'Small scene', 'Ship'],
-          cast: ''
-        }
-      ]
-    }
-  },
-  methods: {
-    onSubmit() {
-      axios
-        .post('https://my-json-server.typicode.com/kuslukas94/vue-mastery-course', this.productions)
-        .then((response) => {
-          console.log('Response', response)
-        })
-        .catch((err) => {
-          console.log('Error', err)
-        })
-    }
+const productions = ref([
+  {
+    id: myUUID(),
+    title: '',
+    category: '',
+    duration: '',
+    location: 'Big scene', // Default value for select
+    cast: ''
   }
+])
+
+const onSubmit = () => {
+  const productionToSend = productions.value[0]
+
+  ProductionService.saveData({ productions: [productionToSend] })
+    .then((response) => {
+      console.log('Response:', response)
+    })
+    .catch((err) => {
+      console.log('Error:', err)
+    })
 }
 </script>
 
@@ -36,24 +31,24 @@ export default {
   <form class="myForm" @submit.prevent="onSubmit">
     <h3>Production details:</h3>
     <label for="title">Title:</label>
-    <input v-model.lazy="productions.title" id="title" />
+    <input v-model.lazy="productions[0].title" id="title" />
     <br />
     <label for="category">Category:</label>
-    <input v-model.lazy="productions.category" id="category" />
+    <input v-model.lazy="productions[0].category" id="category" />
     <br />
     <label for="duration">Duration:</label>
-    <input v-model.lazy.number="productions.duration" id="duration" placeholder="in minutes" />
+    <input v-model.lazy.number="productions[0].duration" id="duration" placeholder="in minutes" />
     <br />
     <label for="location">Location:</label>
-    <select v-model.lazy="productions.location" id="location">
-      <option disabled value="Choose scene">Choose scene</option>
+    <select v-model.lazy="productions[0].location" id="location">
+      <option disabled value="">Choose scene</option>
       <option>Big scene</option>
       <option>Small scene</option>
       <option>Ship</option>
     </select>
     <br />
     <label for="cast">Cast:</label>
-    <input v-model.lazy="productions.cast" id="cast" />
+    <input v-model.lazy="productions[0].cast" id="cast" />
     <br />
     <input type="submit" class="button" value="Submit" />
   </form>

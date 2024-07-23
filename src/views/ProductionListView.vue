@@ -3,12 +3,12 @@ import { ref, onMounted } from 'vue'
 import ProductionService from '@/services/ProductionService.js'
 import ProductionCard from '@/components/ProductionCard.vue'
 
-const productions = ref(null)
+const data = ref([])
 
 onMounted(() => {
-  ProductionService.getProductions()
+  ProductionService.loadData()
     .then((response) => {
-      productions.value = response.data
+      data.value = response.data.productions
     })
     .catch((error) => {
       console.log(error)
@@ -20,11 +20,7 @@ onMounted(() => {
   <div id="layout-productionList">
     <h1>Repertoir</h1>
     <div class="productions">
-      <ProductionCard
-        v-for="production in productions"
-        :key="production.id"
-        :production="production"
-      />
+      <ProductionCard v-for="production in data" :key="production.id" :production="production" />
     </div>
   </div>
 </template>

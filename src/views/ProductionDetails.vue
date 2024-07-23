@@ -1,33 +1,51 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import ProductionService from '@/services/ProductionService.js'
 
 const props = defineProps({
   id: {
+    type: String,
     required: true
   }
 })
 
 const production = ref(null)
 
-onMounted(() => {
-  ProductionService.getOneProduction(props.id)
+// Funkce pro načtení dat podle ID
+const loadProductionData = (id) => {
+  ProductionService.loadData()
     .then((response) => {
-      production.value = response.data
+      console.log('Response Data:', response.data)
+      const matchedProduction = response.data.productions.find((p) => p.id === id)
+      production.value = matchedProduction || null
+      console.log('Production Data:', production.value)
     })
     .catch((error) => {
-      console.log(error)
+      console.error('Error loading production data:', error)
     })
+}
+
+onMounted(() => {
+  loadProductionData(props.id)
 })
+
+watch(
+  () => props.id,
+  (newId) => {
+    if (newId !== undefined) {
+      loadProductionData(newId)
+    }
+  }
+)
 </script>
 
 <template>
   <div id="layout-productionDetails" v-if="production">
     <h1>{{ production.title }}</h1>
-    <p>{{ production.category }}</p>
-    <p>{{ production.duration }}</p>
+    <p>Category: {{ production.category }}</p>
+    <p>Duration: {{ production.duration }} min</p>
     <p>{{ production.location }}</p>
-    <p>{{ production.cast }}</p>
+    <p>Cast: {{ production.cast }}</p>
   </div>
 </template>
 

@@ -1,12 +1,5 @@
-let UUID = 1
+import { v4 as uuidv4 } from 'uuid'
 
 export default function myUUID() {
-  const getID = () => {
-    UUID++
-    return UUID
-  }
-
-  return {
-    getID
-  }
+  return uuidv4()
 }
