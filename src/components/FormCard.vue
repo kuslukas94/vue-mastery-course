@@ -63,7 +63,7 @@ const onSubmit = () => {
   padding: 0 0 5rem 0;
   justify-content: center;
   align-items: center;
-  background-color: rgb(145, 167, 199);
+  background-color: #a37596;
   border-radius: 15px;
   border: 1px solid rgba(128, 128, 128, 0.605);
   box-shadow: 1px 5px 10px 1px;
@@ -82,10 +82,15 @@ select {
   border: 1px solid rgb(123, 123, 133);
   box-shadow: 1px 1px 2px 0.5px;
   font-size: medium;
-  background-color: rgb(102, 195, 211);
+  background-color: #abc7b6;
   cursor: pointer;
 }
 .button:hover {
-  background-color: rgb(66, 212, 166);
+  background-color: #92a7b6;
 }
 </style>
+<!-- --text: #150e12;
+--background: #faf7f9;
+--primary: #a37596;
+--secondary: #abc7b6;
+--accent: #92a7b6; -->

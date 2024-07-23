@@ -30,6 +30,9 @@ onMounted(() => {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #faf7f9;
+  padding-top: 1rem;
+  margin-top: -1rem;
 }
 .productions {
   display: flex;
