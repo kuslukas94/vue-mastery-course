@@ -29,28 +29,27 @@ const onSubmit = () => {
 
 <template>
   <form class="myForm" @submit.prevent="onSubmit">
-    <h3>Production details:</h3>
-    <label for="title">Title:</label>
-    <input v-model.lazy="productions[0].title" id="title" />
+    <h3>PRODUCTION DETAILS:</h3>
+    <input v-model.lazy="productions[0].title" id="title" placeholder="TITLE" />
     <br />
-    <label for="category">Category:</label>
-    <input v-model.lazy="productions[0].category" id="category" />
+    <input v-model.lazy="productions[0].category" id="category" placeholder="CATEGORY" />
     <br />
-    <label for="duration">Duration:</label>
-    <input v-model.lazy.number="productions[0].duration" id="duration" placeholder="in minutes" />
+    <input
+      v-model.lazy.number="productions[0].duration"
+      id="duration"
+      placeholder="DURATION IN MINS"
+    />
     <br />
-    <label for="location">Location:</label>
     <select v-model.lazy="productions[0].location" id="location">
-      <option disabled value="">Choose scene</option>
+      <option disabled value="">CHOOSE LOCATION</option>
       <option>Big scene</option>
       <option>Small scene</option>
       <option>Ship</option>
     </select>
     <br />
-    <label for="cast">Cast:</label>
-    <input v-model.lazy="productions[0].cast" id="cast" />
+    <input v-model.lazy="productions[0].cast" id="cast" placeholder="CAST" />
     <br />
-    <input type="submit" class="button" value="Submit" />
+    <input type="submit" class="button" value="SUBMIT" />
   </form>
 </template>
 
@@ -76,17 +75,25 @@ select {
   width: 13rem;
   height: 1.5rem;
   text-align: center;
+  border-radius: 7px;
+  border: 1px solid white;
+}
+select {
+  width: 13.4rem;
 }
 .button {
-  border-radius: 15px;
-  border: 1px solid rgb(123, 123, 133);
-  box-shadow: 1px 1px 2px 0.5px;
-  font-size: medium;
+  border-radius: 7px;
+  border: 1px solid #788b7f;
+  font-size: 14px;
+  font-weight: 600;
   background-color: #abc7b6;
   cursor: pointer;
+  width: 13rem;
+  height: 2rem;
 }
 .button:hover {
   background-color: #92a7b6;
+  color: #f4e6ee;
 }
 </style>
 <!-- --text: #150e12;
