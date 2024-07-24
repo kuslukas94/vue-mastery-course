@@ -22,18 +22,27 @@ defineProps({
 
 <style scoped>
 .production-link {
-  color: #2c3e50;
+  color: #150e12;
   text-decoration: none;
 }
 .production-card {
   padding: 20px;
   width: 250px;
   cursor: pointer;
-  border: 1px solid #39495c;
+  border: 1px solid #abc7b6;
+  border-radius: 25px;
   margin-bottom: 18px;
+  background-color: #a37596;
+  color: #150e12;
 }
 .production-card:hover {
   transform: scale(1.01);
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);
+  background-color: #92a7b6;
 }
 </style>
+<!-- --text: #150e12;
+--background: #faf7f9;
+--primary: #a37596;
+--secondary: #abc7b6;
+--accent: #92a7b6; -->

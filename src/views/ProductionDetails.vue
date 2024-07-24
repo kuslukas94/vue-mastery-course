@@ -42,18 +42,22 @@ watch(
 <template>
   <div id="layout-productionDetails" v-if="production">
     <h1>{{ production.title }}</h1>
-    <p>Category: {{ production.category }}</p>
-    <p>Duration: {{ production.duration }} min</p>
-    <p>{{ production.location }}</p>
-    <p>Cast: {{ production.cast }}</p>
+    <p><b>Category:</b> {{ production.category }}</p>
+    <p><b>Duration:</b> {{ production.duration }} min</p>
+    <p><b>Location:</b> {{ production.location }}</p>
+    <p><b>Cast:</b> {{ production.cast }}</p>
   </div>
 </template>
 
 <style scoped>
 #layout-productionDetails {
+  color: #150e12;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #a37596;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
 }
 p {
   text-align: center;
