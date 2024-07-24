@@ -13,10 +13,8 @@ const productions = ref([
     cast: ''
   }
 ])
-
-const onSubmit = () => {
+const onSubmit = (event) => {
   const productionToSend = productions.value[0]
-
   ProductionService.saveData({ productions: [productionToSend] })
     .then((response) => {
       console.log('Response:', response)
@@ -24,6 +22,7 @@ const onSubmit = () => {
     .catch((err) => {
       console.log('Error:', err)
     })
+  event.target.reset()
 }
 </script>
 
@@ -80,6 +79,7 @@ select {
 }
 select {
   width: 13.4rem;
+  height: 1.8rem;
 }
 .button {
   border-radius: 7px;
