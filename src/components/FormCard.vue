@@ -19,6 +19,7 @@ const onSubmit = (event) => {
     .then((response) => {
       console.log('Response:', response)
     })
+    .then(alert('Production was saved.'))
     .catch((err) => {
       console.log('Error:', err)
     })
