@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue' // TODO: use reactive instead of ref
 import ProductionService from '@/services/ProductionService.js'
 import myUUID from '../stores/UUID'
 
