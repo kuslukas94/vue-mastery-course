@@ -3,7 +3,7 @@ import { ref } from 'vue' // TODO: use reactive instead of ref
 import ProductionService from '@/services/ProductionService.js'
 import myUUID from '../stores/UUID'
 
-const productions = ref([
+const productions = ref([ // this can be reactive, and only object, you dont need here array of things
   {
     id: myUUID(),
     title: '',
@@ -13,9 +13,9 @@ const productions = ref([
     cast: ''
   }
 ])
-const onSubmit = (event) => {
+const onSubmit = (event) => { // change this to async await and use try catch
   const productionToSend = productions.value[0]
-  ProductionService.saveData({ productions: [productionToSend] })
+  ProductionService.saveData({ productions: [productionToSend] }) // TODO if you will use reactive on production, here you will need only ...saveData(production) and thats it
     .then((response) => {
       console.log('Response:', response)
     })
@@ -31,7 +31,7 @@ const onSubmit = (event) => {
   <form class="myForm" @submit.prevent="onSubmit">
     <h3>PRODUCTION DETAILS:</h3>
     <input v-model.lazy="productions[0].title" id="title" placeholder="TITLE" />
-    <br />
+    <br /> <!-- remove all br, you can set gap css property for my form -->
     <input v-model.lazy="productions[0].category" id="category" placeholder="CATEGORY" />
     <br />
     <input
@@ -101,4 +101,9 @@ select {
 --background: #faf7f9;
 --primary: #a37596;
 --secondary: #abc7b6;
---accent: #92a7b6; -->
+--accent: #92a7b6; 
+
+TODO: remove this and use css variables
+-->
+
+

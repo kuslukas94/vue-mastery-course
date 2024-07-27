@@ -1,3 +1,4 @@
+// todo name of the file should be lower case productionService.js
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
@@ -31,10 +32,10 @@ const loadData = () => {
   })
 }
 
-const saveData = (newData) => {
-  data.productions = [...data.productions, ...newData.productions]
+const saveData = (newData) => { // new data will be only one production
+  data.productions = [...data.productions, ...newData.productions] //data.productions.push(newData)
   return new Promise((resolve) => {
-    resolve({ data: newData })
+    resolve({ data: newData }) // send all the data back
   })
 }
 
