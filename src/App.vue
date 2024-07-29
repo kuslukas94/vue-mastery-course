@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div id="layout">
+  <div class="layout">
     <header>
       <div class="wrapper">
         <nav>
@@ -16,30 +16,3 @@ import { RouterLink, RouterView } from 'vue-router'
   </div>
   <RouterView />
 </template>
-
-<style>
-#layout {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #150e12;
-  background-color: #faf7f9;
-}
-nav {
-  padding: 30px;
-}
-nav a {
-  font-weight: bold;
-  color: #150e12;
-}
-nav a.router-link-exact-active {
-  color: #92a7b6;
-}
-h1 {
-  text-align: center;
-}
-h2 {
-  font-size: 20px;
-}
-</style>
