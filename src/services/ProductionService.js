@@ -32,10 +32,8 @@ const loadData = () => {
 }
 
 const saveData = (newData) => {
-  data.productions = [...data.productions, ...newData.productions]
-  return new Promise((resolve) => {
-    resolve({ data: newData })
-  })
+  data.productions.push(newData)
+  return data
 }
 
 mock.onGet('/productions').reply(() => {

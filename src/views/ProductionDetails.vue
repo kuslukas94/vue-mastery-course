@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
-import ProductionService from '@/services/ProductionService.js'
+import ProductionService from '@/services/productionService.js'
 
 const props = defineProps({
   id: {
@@ -40,7 +40,7 @@ watch(
 </script>
 
 <template>
-  <div id="layout-productionDetails" v-if="production">
+  <div class="layout" v-if="production">
     <h1>{{ production.title }}</h1>
     <p><b>Category:</b> {{ production.category }}</p>
     <p><b>Duration:</b> {{ production.duration }} min</p>
@@ -49,15 +49,15 @@ watch(
   </div>
 </template>
 
-<style scoped>
-#layout-productionDetails {
-  color: #150e12;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #a37596;
+<style lang="scss" scoped>
+@import '../styles/_variables.scss';
+@import '../styles/mixins';
+
+.layout {
+  background-color: $main-background-color;
   padding-top: 1rem;
   padding-bottom: 2rem;
+  @include border-card;
 }
 p {
   text-align: center;
