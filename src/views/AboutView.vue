@@ -6,9 +6,10 @@
     <ul>
       <li>Select input - choose existing production</li>
       <li>Filter playble productions regarding to location and cast</li>
+      <li>Delete button</li>
+      <li>Edit button</li>
     </ul>
-    <h3>Add reponsive design styling</h3>
-    <h3>Form - change alert to message in div</h3>
+    <h3>Connect to real database</h3>
     <h2>|| Style to be finished ||</h2>
     <ul>
       <li>Add favicon</li>

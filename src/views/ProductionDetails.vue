@@ -57,6 +57,7 @@ watch(
   background-color: $main-background-color;
   padding-top: 1rem;
   padding-bottom: 2rem;
+  width: 98vw;
   @include border-card;
 }
 p {

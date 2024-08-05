@@ -1,0 +1,15 @@
+/* Notification animation */
+@keyframes notification-animation {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.95;
+  }
+  60% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+  }
+}

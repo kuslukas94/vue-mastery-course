@@ -8,6 +8,9 @@ body {
   text-align: center;
   color: $main-font-color;
   background-color: #faf7f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 nav {
   padding: 30px;
