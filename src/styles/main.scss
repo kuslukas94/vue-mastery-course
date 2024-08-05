@@ -28,3 +28,11 @@ h1 {
 h2 {
   font-size: 20px;
 }
+button {
+  border-radius: 25%;
+  border: 1px solid $button-color;
+}
+button:hover {
+  background-color: $accent-color;
+  border-color: $button-hover-color;
+}

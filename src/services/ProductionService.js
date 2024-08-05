@@ -31,14 +31,14 @@ const loadData = () => {
   })
 }
 
-const saveData = (newData) => {
-  data.productions.push(newData)
+const saveData = (newProduction) => {
+  data.productions.push(newProduction)
   return data
 }
 
-const deleteData = (id) => {
+const deleteData = (uuid) => {
   return new Promise((resolve, reject) => {
-    const index = data.productions.findIndex((production) => production.id === id)
+    const index = data.productions.findIndex((production) => production.id === uuid)
     if (index !== -1) {
       data.productions.splice(index, 1)
       resolve({ message: 'Deleted successfully' })
@@ -54,11 +54,10 @@ mock.onGet('/productions').reply(() => {
 
 mock.onPost('/productions').reply((config) => {
   const newProduction = JSON.parse(config.data)
-  const newData = { productions: [newProduction] }
-  return saveData(newData).then((savedData) => [201, savedData.data.productions[0]])
+  return saveData(newProduction).then(() => [201, newProduction])
 })
 
-mock.onDelete(/\/productions\/.+/).reply((config) => {
+mock.onDelete(/\/production\/.+/).reply((config) => {
   const id = config.url.split('/').pop()
   return deleteData(id)
     .then((response) => [200, response])

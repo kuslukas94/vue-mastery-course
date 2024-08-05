@@ -6,7 +6,6 @@
     <ul>
       <li>Select input - choose existing production</li>
       <li>Filter playble productions regarding to location and cast</li>
-      <li>Delete button</li>
       <li>Edit button</li>
     </ul>
     <h3>Connect to real database</h3>

@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import ProductionService from '@/services/productionService.js'
 
 const props = defineProps({
@@ -11,7 +12,7 @@ const props = defineProps({
 
 const production = ref(null)
 
-// Funkce pro načtení dat podle ID
+// LOAD DATA BY ID
 const loadProductionData = (id) => {
   ProductionService.loadData()
     .then((response) => {
@@ -37,10 +38,27 @@ watch(
     }
   }
 )
+
+const id = ref(props.id)
+const router = useRouter()
+//DELETE DATA BY ID
+const deleteProduction = async () => {
+  try {
+    const response = await ProductionService.deleteData(id.value)
+    console.log('Delete response:', response)
+    router.push('/')
+  } catch (err) {
+    console.log('Error deleting production:', err)
+  }
+}
 </script>
 
 <template>
   <div class="layout" v-if="production">
+    <div class="button-container">
+      <button @click="editProduction">🛠️</button>
+      <button @click="deleteProduction">❌</button>
+    </div>
     <h1>{{ production.title }}</h1>
     <p><b>Category:</b> {{ production.category }}</p>
     <p><b>Duration:</b> {{ production.duration }} min</p>
@@ -60,7 +78,13 @@ watch(
   width: 98vw;
   @include border-card;
 }
-p {
-  text-align: center;
+.button-container {
+  position: relative;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  top: 53px;
+  right: 5rem;
+  gap: 20px;
 }
 </style>
