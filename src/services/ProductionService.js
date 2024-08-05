@@ -36,6 +36,18 @@ const saveData = (newData) => {
   return data
 }
 
+const deleteData = (id) => {
+  return new Promise((resolve, reject) => {
+    const index = data.productions.findIndex((production) => production.id === id)
+    if (index !== -1) {
+      data.productions.splice(index, 1)
+      resolve({ message: 'Deleted successfully' })
+    } else {
+      reject({ message: 'Production not found' })
+    }
+  })
+}
+
 mock.onGet('/productions').reply(() => {
   return [200, data]
 })
@@ -46,7 +58,15 @@ mock.onPost('/productions').reply((config) => {
   return saveData(newData).then((savedData) => [201, savedData.data.productions[0]])
 })
 
+mock.onDelete(/\/productions\/.+/).reply((config) => {
+  const id = config.url.split('/').pop()
+  return deleteData(id)
+    .then((response) => [200, response])
+    .catch((error) => [404, error])
+})
+
 export default {
   loadData,
-  saveData
+  saveData,
+  deleteData
 }

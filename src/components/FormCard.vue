@@ -15,13 +15,13 @@ const productions = reactive(initialProductions())
 //SUBMIT form function
 const onSubmit = async () => {
   try {
-    const response = await ProductionService.saveData(productions)
+    const response = await ProductionService.saveData({ ...productions })
     console.log('Response', response)
     turnOnNotification()
+    Object.assign(productions, initialProductions())
   } catch (err) {
     console.log('Error', err)
   }
-  Object.assign(productions, initialProductions())
 }
 //Notification animation function
 const disabled = ref(false)
@@ -36,20 +36,16 @@ function turnOnNotification() {
 <template>
   <form class="myForm" @submit.prevent="onSubmit" autocomplete="off">
     <h3>PRODUCTION DETAILS:</h3>
-    <input v-model.lazy="productions.title" id="title" placeholder="TITLE" />
-    <input v-model.lazy="productions.category" id="category" placeholder="CATEGORY" />
-    <input
-      v-model.lazy.number="productions.duration"
-      id="duration"
-      placeholder="DURATION IN MINS"
-    />
-    <select v-model.lazy="productions.location" id="location">
+    <input v-model="productions.title" id="title" placeholder="TITLE" />
+    <input v-model="productions.category" id="category" placeholder="CATEGORY" />
+    <input v-model.number="productions.duration" id="duration" placeholder="DURATION IN MINS" />
+    <select v-model="productions.location" id="location">
       <option disabled value="">CHOOSE LOCATION</option>
       <option>Big scene</option>
       <option>Small scene</option>
       <option>Ship</option>
     </select>
-    <input v-model.lazy="productions.cast" id="cast" placeholder="CAST" />
+    <input v-model="productions.cast" id="cast" placeholder="CAST" />
     <input type="submit" class="button" value="SUBMIT" />
   </form>
   <div :class="{ notification: disabled }">
