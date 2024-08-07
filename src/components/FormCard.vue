@@ -1,36 +1,11 @@
 <script setup>
-import { reactive, ref } from 'vue'
-import ProductionService from '@/services/productionService.js'
-import myUUID from '../stores/UUID'
+import { toRefs } from 'vue'
 
-const initialProductions = () => ({
-  id: myUUID(),
-  title: '',
-  category: '',
-  duration: '',
-  location: 'Big scene', // Default value for select
-  cast: ''
+const props = defineProps({
+  productions: Object,
+  onSubmit: Function
 })
-const productions = reactive(initialProductions())
-//SUBMIT form function
-const onSubmit = async () => {
-  try {
-    const response = await ProductionService.saveData({ ...productions })
-    console.log('Response', response)
-    turnOnNotification()
-    Object.assign(productions, initialProductions())
-  } catch (err) {
-    console.log('Error', err)
-  }
-}
-//Notification animation function
-const disabled = ref(false)
-function turnOnNotification() {
-  disabled.value = true
-  setTimeout(() => {
-    disabled.value = false
-  }, 2000)
-}
+const { productions, onSubmit } = toRefs(props)
 </script>
 
 <template>
@@ -48,9 +23,6 @@ function turnOnNotification() {
     <input v-model="productions.cast" id="cast" placeholder="CAST" />
     <input type="submit" class="button" value="SUBMIT" />
   </form>
-  <div :class="{ notification: disabled }">
-    <div v-if="disabled">Production was saved.</div>
-  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -100,22 +72,5 @@ select {
 .button:hover {
   background-color: $accent-color;
   color: $button-hover-color;
-}
-.notification {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  top: -25rem;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 200px;
-  width: 400px;
-  color: #fff;
-  font-size: 20px;
-  font-weight: 600;
-  background-color: #788b7f;
-  @include border-card;
-  animation: notification-animation 3s ease-out;
 }
 </style>

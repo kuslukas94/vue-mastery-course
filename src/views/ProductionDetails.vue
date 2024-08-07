@@ -1,7 +1,8 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
-import { useRouter } from 'vue-router'
 import ProductionService from '@/services/productionService.js'
+import EditButton from '@/components/EditButton.vue'
+import DeleteButton from '@/components/DeleteButton.vue'
 
 const props = defineProps({
   id: {
@@ -11,7 +12,6 @@ const props = defineProps({
 })
 
 const production = ref(null)
-
 // LOAD DATA BY ID
 const loadProductionData = (id) => {
   ProductionService.loadData()
@@ -38,26 +38,13 @@ watch(
     }
   }
 )
-
-const id = ref(props.id)
-const router = useRouter()
-//DELETE DATA BY ID
-const deleteProduction = async () => {
-  try {
-    const response = await ProductionService.deleteData(id.value)
-    console.log('Delete response:', response)
-    router.push('/')
-  } catch (err) {
-    console.log('Error deleting production:', err)
-  }
-}
 </script>
 
 <template>
   <div class="layout" v-if="production">
     <div class="button-container">
-      <button @click="editProduction">🛠️</button>
-      <button @click="deleteProduction">❌</button>
+      <EditButton />
+      <DeleteButton :id="props.id" />
     </div>
     <h1>{{ production.title }}</h1>
     <p><b>Category:</b> {{ production.category }}</p>

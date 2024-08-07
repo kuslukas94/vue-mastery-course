@@ -3,6 +3,7 @@ import ProductionListView from '../views/ProductionListView.vue'
 import ProductionDetails from '../views/ProductionDetails.vue'
 import FormView from '../views/FormView.vue'
 import AboutView from '../views/AboutView.vue'
+import EditorView from '../views/EditorView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/form',
       name: 'form',
       component: FormView
+    },
+    {
+      path: '/:id/edit',
+      name: 'edit',
+      component: EditorView
     }
   ]
 })
