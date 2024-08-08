@@ -23,5 +23,5 @@ const deleteProduction = async () => {
 </script>
 
 <template>
-  <button @click="deleteProduction">❌</button>
+  <button @click="deleteProduction" class="button">❌</button>
 </template>

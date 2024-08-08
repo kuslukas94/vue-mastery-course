@@ -2,16 +2,19 @@
 import { ref, onMounted } from 'vue'
 import ProductionService from '@/services/productionService.js'
 import ProductionCard from '@/components/ProductionCard.vue'
+import { useRouter } from 'vue-router'
 
 const data = ref([])
+const router = useRouter()
 
 onMounted(() => {
   ProductionService.loadData()
     .then((response) => {
       data.value = response.data.productions
     })
+    // eslint-disable-next-line no-unused-vars
     .catch((error) => {
-      console.log(error)
+      router.push({ name: 'network-error' })
     })
 })
 </script>

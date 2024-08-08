@@ -1,11 +1,17 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import ProductionService from '@/services/productionService.js'
 import EditButton from '@/components/EditButton.vue'
 import DeleteButton from '@/components/DeleteButton.vue'
 
+const router = useRouter()
 const props = defineProps({
   id: {
+    type: String,
+    required: true
+  },
+  play: {
     type: String,
     required: true
   }
@@ -13,17 +19,27 @@ const props = defineProps({
 
 const production = ref(null)
 // LOAD DATA BY ID
-const loadProductionData = (id) => {
-  ProductionService.loadData()
-    .then((response) => {
-      console.log('Response Data:', response.data)
-      const matchedProduction = response.data.productions.find((p) => p.id === id)
-      production.value = matchedProduction || null
-      console.log('Production Data:', production.value)
-    })
-    .catch((error) => {
-      console.error('Error loading production data:', error)
-    })
+const loadProductionData = async (id) => {
+  try {
+    const response = await ProductionService.loadData()
+    console.log('Response Data:', response.data)
+    const matchedProduction = response.data.productions.find((p) => p.id === id)
+    production.value = matchedProduction || null
+    console.log('Production Data:', production.value)
+    if (production.value === null) {
+      throw new Error()
+    }
+  } catch (error) {
+    if (error.response && error.response.status == 404) {
+      router.push({
+        name: '404Resource',
+        params: { resource: 'play' }
+      })
+      console.log('Error:', error)
+    } else {
+      router.push({ name: 'network-error' })
+    }
+  }
 }
 
 onMounted(() => {
@@ -55,8 +71,8 @@ watch(
 </template>
 
 <style lang="scss" scoped>
-@import '../styles/_variables.scss';
-@import '../styles/mixins';
+@import '../../styles/variables';
+@import '../../styles/mixins';
 
 .layout {
   background-color: $main-background-color;

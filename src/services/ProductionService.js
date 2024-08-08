@@ -26,9 +26,7 @@ const data = {
 }
 
 const loadData = () => {
-  return new Promise((resolve) => {
-    resolve({ data })
-  })
+  return instance.get('/productions')
 }
 
 const saveData = (newProduction) => {
