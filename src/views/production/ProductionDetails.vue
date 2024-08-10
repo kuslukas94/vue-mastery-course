@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, defineProps } from 'vue'
 import { useRouter } from 'vue-router'
 import ProductionService from '@/services/productionService.js'
 import EditButton from '@/components/EditButton.vue'
@@ -24,18 +24,17 @@ const loadProductionData = async (id) => {
     const response = await ProductionService.loadData()
     console.log('Response Data:', response.data)
     const matchedProduction = response.data.productions.find((p) => p.id === id)
-    production.value = matchedProduction || null
-    console.log('Production Data:', production.value)
-    if (production.value === null) {
-      throw new Error()
+    if (!matchedProduction) {
+      throw new Error('Production not found')
     }
+    production.value = matchedProduction
+    console.log('Production Data:', production.value)
   } catch (error) {
-    if (error.response && error.response.status == 404) {
+    if (error.message === 'Production not found') {
       router.push({
         name: '404Resource',
         params: { resource: 'play' }
       })
-      console.log('Error:', error)
     } else {
       router.push({ name: 'network-error' })
     }
