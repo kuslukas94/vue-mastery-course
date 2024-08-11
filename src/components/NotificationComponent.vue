@@ -1,16 +1,12 @@
 <script setup>
-// eslint-disable-next-line no-unused-vars
-const props = defineProps({
-  isVisible: {
-    type: Boolean,
-    required: true
-  }
-})
+import { inject } from 'vue'
+
+const GStore = inject('GStore')
 </script>
 
 <template>
-  <div :class="{ notification: isVisible }">
-    <div v-if="isVisible">Production was saved.</div>
+  <div class="notification">
+    {{ GStore.flashMessage }}
   </div>
 </template>
 
