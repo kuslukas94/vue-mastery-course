@@ -11,7 +11,7 @@ const props = defineProps({
     type: String,
     required: true
   },
-  performance: {
+  play: {
     type: String,
     required: true
   }
@@ -33,7 +33,7 @@ const loadProductionData = async (id) => {
     if (error.message === 'Production not found') {
       router.push({
         name: '404Resource',
-        params: { resource: 'performance' }
+        params: { resource: 'play' }
       })
     } else {
       router.push({ name: 'network-error' })

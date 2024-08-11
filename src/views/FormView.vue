@@ -1,8 +1,9 @@
 <script setup>
-import { reactive, inject } from 'vue'
+import { reactive, ref } from 'vue'
 import ProductionService from '@/services/productionService.js'
 import myUUID from '@/stores/UUID'
 import FormCard from '@/components/FormCard.vue'
+import NotificationComponent from '@/components//NotificationComponent.vue'
 
 const initialProductions = () => ({
   id: myUUID(),
@@ -12,27 +13,31 @@ const initialProductions = () => ({
   location: 'Big scene', // Default value for select
   cast: ''
 })
+
 const productions = reactive(initialProductions())
-const GStore = inject('GStore')
 
 const onSubmit = async () => {
   try {
     const response = await ProductionService.saveData({ ...productions })
     console.log('Response', response)
-    GStore.flashMessage = 'Data saved successfully'
-    setTimeout(() => {
-      GStore.flashMessage = ''
-    }, 3000)
+    turnOnNotification()
     Object.assign(productions, initialProductions())
   } catch (err) {
     console.log('Error', err)
   }
 }
+
+const disabled = ref(false)
+
+function turnOnNotification() {
+  disabled.value = true
+  setTimeout(() => {
+    disabled.value = false
+  }, 1500)
+}
 </script>
 
 <template>
   <FormCard :productions="productions" :onSubmit="onSubmit" />
-  <div class="flashMessage" v-if="GStore.flashMessage">
-    {{ GStore.flashMessage }}
-  </div>
+  <NotificationComponent :isVisible="disabled" />
 </template>

@@ -1,6 +1,5 @@
 @import './variables';
 @import './mixins';
-@import './animations';
 
 body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -40,21 +39,4 @@ h2 {
 .button:hover {
   background-color: $accent-color;
   border-color: $button-hover-color;
-}
-.flashMessage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  top: -25rem;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 200px;
-  width: 400px;
-  color: #fff;
-  font-size: 20px;
-  font-weight: 600;
-  background-color: #788b7f;
-  @include border-card;
-  animation: notification-animation 3s linear;
 }
