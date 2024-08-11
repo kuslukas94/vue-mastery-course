@@ -23,7 +23,7 @@ const onSubmit = async () => {
     GStore.flashMessage = 'Data saved successfully'
     setTimeout(() => {
       GStore.flashMessage = ''
-    }, 3000)
+    }, 1500)
     Object.assign(productions, initialProductions())
   } catch (err) {
     console.log('Error', err)
@@ -32,6 +32,6 @@ const onSubmit = async () => {
 </script>
 
 <template>
-  <FormCard :productions="productions" :onSubmit="onSubmit" />
   <NotificationComponent v-if="GStore.flashMessage" />
+  <FormCard :productions="productions" :onSubmit="onSubmit" />
 </template>
