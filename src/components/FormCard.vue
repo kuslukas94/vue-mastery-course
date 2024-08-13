@@ -1,58 +1,42 @@
 <script setup>
-import { reactive } from 'vue'
-import ProductionService from '@/services/productionService.js'
-import myUUID from '../stores/UUID'
+import { toRefs } from 'vue'
 
-const productions = reactive({
-  id: myUUID(),
-  title: '',
-  category: '',
-  duration: '',
-  location: 'Big scene', // Default value for select
-  cast: ''
+const props = defineProps({
+  productions: Object,
+  onSubmit: Function
 })
-const onSubmit = async (event) => {
-  try {
-    const response = await ProductionService.saveData(productions)
-    console.log('Response', response)
-    alert('Production was saved.')
-  } catch (err) {
-    console.log('Error', err)
-  }
-  event.target.reset()
-}
+const { productions, onSubmit } = toRefs(props)
 </script>
 
 <template>
-  <form class="myForm" @submit.prevent="onSubmit">
+  <form class="myForm" @submit.prevent="onSubmit" autocomplete="off">
     <h3>PRODUCTION DETAILS:</h3>
-    <input v-model.lazy="productions.title" id="title" placeholder="TITLE" />
-    <input v-model.lazy="productions.category" id="category" placeholder="CATEGORY" />
-    <input
-      v-model.lazy.number="productions.duration"
-      id="duration"
-      placeholder="DURATION IN MINS"
-    />
-    <select v-model.lazy="productions.location" id="location">
+    <input v-model="productions.title" id="title" placeholder="TITLE" />
+    <input v-model="productions.category" id="category" placeholder="CATEGORY" />
+    <input v-model.number="productions.duration" id="duration" placeholder="DURATION IN MINS" />
+    <select v-model="productions.location" id="location">
       <option disabled value="">CHOOSE LOCATION</option>
       <option>Big scene</option>
       <option>Small scene</option>
       <option>Ship</option>
     </select>
-    <input v-model.lazy="productions.cast" id="cast" placeholder="CAST" />
+    <input v-model="productions.cast" id="cast" placeholder="CAST" />
     <input type="submit" class="button" value="SUBMIT" />
   </form>
 </template>
 
 <style lang="scss" scoped>
 @import '../styles/variables';
+@import '../styles/mixins';
+@import '../styles/_animations.scss';
 
 .myForm {
-  position: relative;
   display: flex;
   flex-direction: column;
   margin: 0 10rem;
   padding: 0 0 5rem 0;
+  width: 55vw;
+  height: auto;
   justify-content: center;
   align-items: center;
   background-color: $main-background-color;

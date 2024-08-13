@@ -1,22 +1,28 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, inject } from 'vue'
 import ProductionService from '@/services/productionService.js'
 import ProductionCard from '@/components/ProductionCard.vue'
+import NotificationComponent from '../components/NotificationComponent.vue'
+import { useRouter } from 'vue-router'
 
 const data = ref([])
+const router = useRouter()
+const GStore = inject('GStore')
 
 onMounted(() => {
   ProductionService.loadData()
     .then((response) => {
       data.value = response.data.productions
     })
+    // eslint-disable-next-line no-unused-vars
     .catch((error) => {
-      console.log(error)
+      router.push({ name: 'network-error' })
     })
 })
 </script>
 
 <template>
+  <NotificationComponent v-if="GStore.flashMessage" />
   <div class="layout">
     <h1>Repertoir</h1>
     <div class="productions">
