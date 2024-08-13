@@ -29,9 +29,14 @@ const loadData = () => {
   return instance.get('/productions')
 }
 
-const saveData = (newProduction) => {
-  data.productions.push(newProduction)
-  return data
+const saveData = (updatedProduction) => {
+  const index = data.productions.findIndex((production) => production.id === updatedProduction.id)
+  if (index !== -1) {
+    data.productions[index] = updatedProduction
+  } else {
+    data.productions.push(updatedProduction)
+  }
+  return updatedProduction
 }
 
 const deleteData = (uuid) => {
@@ -46,8 +51,29 @@ const deleteData = (uuid) => {
   })
 }
 
+const getProductionById = async (id) => {
+  try {
+    const response = await instance.get(`/productions/${id}`)
+    return response.data
+  } catch (error) {
+    console.log(`Failed to load production by ID: ${id}`)
+    throw error
+  }
+}
+
 mock.onGet('/productions').reply(() => {
   return [200, data]
+})
+
+mock.onGet(/\/productions\/.+/).reply((config) => {
+  const id = config.url.split('/').pop()
+  const production = data.productions.find((p) => p.id === id)
+
+  if (production) {
+    return [200, production]
+  } else {
+    return [404]
+  }
 })
 
 mock.onPost('/productions').reply((config) => {
@@ -65,5 +91,6 @@ mock.onDelete(/\/production\/.+/).reply((config) => {
 export default {
   loadData,
   saveData,
-  deleteData
+  deleteData,
+  getProductionById
 }
