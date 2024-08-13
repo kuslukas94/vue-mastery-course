@@ -8,6 +8,7 @@
       <li>Filter playble productions regarding to location and cast</li>
       <li>Edit button</li>
     </ul>
+    <h3>Add search field to ProductionListView (handy with huge repertoir)</h3>
     <h3>Connect to real database</h3>
     <h2>|| Style to be finished ||</h2>
     <ul>

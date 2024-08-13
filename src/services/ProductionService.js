@@ -21,12 +21,20 @@ const data = {
       duration: 90,
       location: 'Big scene',
       cast: 'Cast 2'
+    },
+    {
+      id: '1a2b3c4d-e5f6-7g8h-9i0j-1234567890kl',
+      title: 'Kytice',
+      category: '12+',
+      duration: 100,
+      location: 'Small',
+      cast: 'Cast 1, Cast 3'
     }
   ]
 }
 
 const loadData = () => {
-  return instance.get('/productions')
+  return instance.get('/productions').then(() => ({ data }))
 }
 
 const saveData = (updatedProduction) => {
@@ -36,7 +44,7 @@ const saveData = (updatedProduction) => {
   } else {
     data.productions.push(updatedProduction)
   }
-  return updatedProduction
+  return Promise.resolve(updatedProduction)
 }
 
 const deleteData = (uuid) => {
@@ -61,6 +69,30 @@ const getProductionById = async (id) => {
   }
 }
 
+const filterProductionsByReferenceTitle = async (referenceTitle) => {
+  try {
+    const { data } = await loadData()
+    const productions = data.productions
+    const referenceProduction = productions.find(
+      (production) => production.title === referenceTitle
+    )
+    if (!referenceProduction) {
+      return productions
+    }
+    return productions.filter((production) => {
+      const locationMatch = production.location === referenceProduction.location
+      const castMatch = referenceProduction.cast
+        .split(', ')
+        .some((castName) => production.cast.includes(castName))
+
+      return !(locationMatch || castMatch)
+    })
+  } catch (error) {
+    console.error('Error filtering productions regarding reference production:', error)
+    throw error
+  }
+}
+
 mock.onGet('/productions').reply(() => {
   return [200, data]
 })
@@ -81,7 +113,7 @@ mock.onPost('/productions').reply((config) => {
   return saveData(newProduction).then(() => [201, newProduction])
 })
 
-mock.onDelete(/\/production\/.+/).reply((config) => {
+mock.onDelete(/\/productions\/.+/).reply((config) => {
   const id = config.url.split('/').pop()
   return deleteData(id)
     .then((response) => [200, response])
@@ -92,5 +124,6 @@ export default {
   loadData,
   saveData,
   deleteData,
-  getProductionById
+  getProductionById,
+  filterProductionsByReferenceTitle
 }

@@ -6,6 +6,7 @@ import FormView from '../views/FormView.vue'
 import AboutView from '../views/AboutView.vue'
 import NotFound from '../views/NotFound.vue'
 import NetworkErr from '../views/NetworkErr.vue'
+import CompareView from '../views/CompareView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,6 +37,11 @@ const router = createRouter({
       path: '/form',
       name: 'form',
       component: FormView
+    },
+    {
+      path: '/compare',
+      name: 'compare',
+      component: CompareView
     },
     {
       path: '/404/:resource',
