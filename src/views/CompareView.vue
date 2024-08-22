@@ -1,5 +1,5 @@
 <script>
-import productionService from '../services/productionService'
+import ProductionService from '@/services/productionService.js'
 
 export default {
   data() {
@@ -12,7 +12,7 @@ export default {
   methods: {
     async fetchProductions() {
       try {
-        this.productions = await productionService.fetchData()
+        this.productions = await ProductionService.fetchData()
       } catch (error) {
         console.error('Error loading productions:', error)
       }
