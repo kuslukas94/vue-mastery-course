@@ -1,43 +1,26 @@
 <script setup>
 import { ref, onMounted, watch, defineProps } from 'vue'
-import { useRouter } from 'vue-router'
 import ProductionService from '@/services/productionService.js'
 import EditButton from '@/components/EditButton.vue'
 import DeleteButton from '@/components/DeleteButton.vue'
 
-const router = useRouter()
 const props = defineProps({
   id: {
-    type: String,
-    required: true
-  },
-  play: {
     type: String,
     required: true
   }
 })
 
 const production = ref(null)
-// LOAD DATA BY ID
+
 const loadProductionData = async (id) => {
   try {
-    const response = await ProductionService.loadData()
-    console.log('Response Data:', response.data)
-    const matchedProduction = response.data.productions.find((p) => p.id === id)
-    if (!matchedProduction) {
-      throw new Error('Production not found')
+    const data = await ProductionService.getProductionById(id)
+    if (data) {
+      production.value = data
     }
-    production.value = matchedProduction
-    console.log('Production Data:', production.value)
   } catch (error) {
-    if (error.message === 'Production not found') {
-      router.push({
-        name: '404Resource',
-        params: { resource: 'play' }
-      })
-    } else {
-      router.push({ name: 'network-error' })
-    }
+    console.error('Error loading production data:', error)
   }
 }
 
@@ -48,7 +31,7 @@ onMounted(() => {
 watch(
   () => props.id,
   (newId) => {
-    if (newId !== undefined) {
+    if (newId) {
       loadProductionData(newId)
     }
   }

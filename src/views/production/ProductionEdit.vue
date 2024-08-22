@@ -13,7 +13,6 @@ const props = defineProps({
   }
 })
 const productions = reactive({
-  id: '',
   title: '',
   category: '',
   duration: '',
@@ -37,18 +36,22 @@ onMounted(() => {
 
 const saveChanges = async () => {
   try {
-    const response = await ProductionService.saveData({ ...productions })
-    console.log('Response', response)
+    if (productions.id) {
+      await ProductionService.saveData({ ...productions, id: props.id })
+    } else {
+      console.error('Production does not have a valid ID')
+    }
     GStore.flashMessage = 'Data edited successfully'
     setTimeout(() => {
       router.replace({
         name: 'production-details',
-        id: props.id
+        params: { id: props.id }
       })
       GStore.flashMessage = ''
     }, 1500)
   } catch (err) {
-    console.log('Error', err)
+    console.error('Error', err)
+    GStore.flashMessage = 'Error saving changes'
   }
 }
 </script>
@@ -57,6 +60,6 @@ const saveChanges = async () => {
   <NotificationComponent v-if="GStore.flashMessage" />
   <div class="title">
     <h1>Edit Production Details</h1>
-    <FormCard :productions="productions" :onSubmit="saveChanges" />
   </div>
+  <FormCard :productions="productions" :onSubmit="saveChanges" />
 </template>

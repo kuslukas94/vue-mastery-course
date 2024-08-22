@@ -12,8 +12,7 @@ export default {
   methods: {
     async fetchProductions() {
       try {
-        const response = await productionService.loadData()
-        this.productions = response.data.productions
+        this.productions = await productionService.fetchData()
       } catch (error) {
         console.error('Error loading productions:', error)
       }
@@ -33,15 +32,13 @@ export default {
     },
     async filterProductionsByPartialTitle(partialTitle) {
       try {
-        const response = await productionService.loadData()
-        const productions = response.data.productions
-        const referenceProductions = productions.filter((production) =>
+        const referenceProductions = this.productions.filter((production) =>
           production.title.toLowerCase().includes(partialTitle.toLowerCase())
         )
         if (referenceProductions.length === 0) {
           return []
         }
-        return productions.filter((production) => {
+        return this.productions.filter((production) => {
           return !referenceProductions.some((reference) => {
             const locationMatch = production.location === reference.location
             const castMatch = reference.cast

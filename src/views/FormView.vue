@@ -1,12 +1,10 @@
 <script setup>
 import { reactive, inject } from 'vue'
 import ProductionService from '@/services/productionService.js'
-import myUUID from '@/stores/UUID'
 import FormCard from '@/components/FormCard.vue'
 import NotificationComponent from '@/components//NotificationComponent.vue'
 
 const initialProductions = () => ({
-  id: myUUID(),
   title: '',
   category: '',
   duration: '',
@@ -18,20 +16,22 @@ const GStore = inject('GStore')
 
 const onSubmit = async () => {
   try {
-    const response = await ProductionService.saveData({ ...productions })
-    console.log('Response', response)
+    await ProductionService.saveData({ ...productions })
     GStore.flashMessage = 'Data saved successfully'
     setTimeout(() => {
       GStore.flashMessage = ''
     }, 1500)
     Object.assign(productions, initialProductions())
   } catch (err) {
-    console.log('Error', err)
+    console.error('Error saving data', err)
   }
 }
 </script>
 
 <template>
   <NotificationComponent v-if="GStore.flashMessage" />
+  <div class="title">
+    <h1>Add new production</h1>
+  </div>
   <FormCard :productions="productions" :onSubmit="onSubmit" />
 </template>
