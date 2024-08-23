@@ -73,13 +73,6 @@ export default {
     <div v-if="filteredProductions.length > 0">
       <ProductionCard v-for="production in filteredProductions" :key="production.id" :production="production"/>
     </div>
-
-
-    <!-- <ul v-if="filteredProductions.length > 0">
-      <li v-for="production in filteredProductions" :key="production.id">
-        {{ production.title }}
-      </li>
-    </ul> -->
     <p v-else-if="searchText.length > 0">No other production playable.</p>
   </div>
 </template>
