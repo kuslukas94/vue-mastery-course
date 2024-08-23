@@ -9,7 +9,7 @@ const initialProductions = () => ({
   category: '',
   duration: '',
   location: 'Big scene', // Default value for select
-  cast: ''
+  cast: []
 })
 const productions = reactive(initialProductions())
 const GStore = inject('GStore')

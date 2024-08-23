@@ -1,5 +1,6 @@
 <script setup>
 import { toRefs } from 'vue'
+import CastManager from './CastManager.vue';
 
 const props = defineProps({
   productions: Object,
@@ -15,7 +16,7 @@ const { productions, onSubmit } = toRefs(props)
     <input
       v-model="productions.category"
       id="category"
-      placeholder="CATEGORY"
+      placeholder="AGE CATEGORY"
       aria-label="Category"
     />
     <input
@@ -30,7 +31,10 @@ const { productions, onSubmit } = toRefs(props)
       <option>Small scene</option>
       <option>Ship</option>
     </select>
-    <input v-model="productions.cast" id="cast" placeholder="CAST" aria-label="Cast" />
+    <!-- CAST -->
+    <CastManager :productions="productions" />
+    
+    <!-- SUBMIT FORM-->
     <input type="submit" class="button" value="SUBMIT" />
   </form>
 </template>

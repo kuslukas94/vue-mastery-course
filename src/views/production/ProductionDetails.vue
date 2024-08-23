@@ -48,7 +48,10 @@ watch(
     <p><b>Category:</b> {{ production.category }}</p>
     <p><b>Duration:</b> {{ production.duration }} min</p>
     <p><b>Location:</b> {{ production.location }}</p>
-    <p><b>Cast:</b> {{ production.cast }}</p>
+    <p><b>Cast:</b></p>
+    <div v-for="(actor, index) in production.cast" :key="index">
+      <p><b>{{ actor.role }}:</b> {{ actor.name }}</p>
+    </div>
   </div>
 </template>
 
