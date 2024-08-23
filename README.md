@@ -1,14 +1,6 @@
-# vue-mastery-course
+# Theater App
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+This App serves to store data about productions and compare its data to achieve easier selection of productions playble at the same time.
 
 ## Project Setup
 
@@ -16,20 +8,21 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+## Run Project
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+## Work in progress
 
-```sh
-npm run build
-```
+|| Features to be prepared ||
 
-### Lint with [ESLint](https://eslint.org/)
+- add search field to ProductionListView (handy with huge repertoir)
+- CAST refactor - add actorName and actorRole to CAST
 
-```sh
-npm run lint
-```
+|| Styles to be finished ||
+
+- try different styling
+- CompareView overal look (and rename in RouterLink)
+- fix: flashMessage animation

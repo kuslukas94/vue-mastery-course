@@ -1,5 +1,5 @@
 {
-  "name": "vue-mastery-course",
+  "name": "vue-theater-app",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -11,10 +11,9 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "axios": "^1.7.2",
-    "axios-mock-adapter": "^1.22.0",
+    "firebase": "^10.13.0",
+    "firestore": "^1.1.6",
     "pinia": "^2.1.7",
-    "uuid": "^10.0.0",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },

@@ -10,9 +10,9 @@ const router = useRouter()
 const GStore = inject('GStore')
 
 onMounted(() => {
-  ProductionService.loadData()
-    .then((response) => {
-      data.value = response.data.productions
+  ProductionService.fetchData()
+    .then((productions) => {
+      data.value = productions
     })
     // eslint-disable-next-line no-unused-vars
     .catch((error) => {

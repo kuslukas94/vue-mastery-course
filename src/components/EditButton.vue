@@ -11,13 +11,15 @@ const props = defineProps({
 </script>
 
 <template>
-  <router-link :to="{ name: 'production-edit', params: { id } }">🛠️</router-link>
+  <router-link :to="{ name: 'production-edit', params: { id } }" class="edit-button"
+    >🛠️</router-link
+  >
 </template>
 
 <style lang="scss" scoped>
 @import '../styles/_variables.scss';
 
-a {
+.edit-button {
   text-decoration: none;
   text-align: center;
   font-size: 15px;
@@ -27,6 +29,12 @@ a {
   border: 1px solid $button-color;
   height: 30px;
   width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
 }
 a:hover {
   background-color: $accent-color;

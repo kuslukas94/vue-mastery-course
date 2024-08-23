@@ -9,6 +9,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <nav>
           <RouterLink :to="{ name: 'production-list' }">Repertoir</RouterLink> |
           <RouterLink :to="{ name: 'form' }">Add new</RouterLink> |
+          <RouterLink :to="{ name: 'compare' }">Compare playble</RouterLink> |
           <RouterLink :to="{ name: 'about' }">About</RouterLink>
         </nav>
       </div>

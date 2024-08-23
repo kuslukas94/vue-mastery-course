@@ -35,6 +35,9 @@ h2 {
   height: 32px;
   width: 32px;
   padding: 0;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
 }
 .button:hover {
   background-color: $accent-color;

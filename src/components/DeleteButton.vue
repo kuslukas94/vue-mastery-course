@@ -13,17 +13,21 @@ const router = useRouter()
 const GStore = inject('GStore')
 
 const deleteProduction = async () => {
-  try {
-    const response = await ProductionService.deleteData(props.id)
-    console.log('Delete response:', response)
-    GStore.flashMessage = 'The production was deleted'
-    setTimeout(() => {
-      GStore.flashMessage = ''
-    }, 1500)
-    router.push('/')
-  } catch (err) {
-    console.log('Error deleting production:', err)
-  }
+  if (confirm('Are you sure you want to delete this production?'))
+    try {
+      await ProductionService.deleteData(props.id)
+      GStore.flashMessage = 'The production was deleted'
+      setTimeout(() => {
+        GStore.flashMessage = ''
+      }, 1500)
+      router.push('/')
+    } catch (err) {
+      console.error('Error deleting production:', err)
+      GStore.flashMessage = 'Failed to delete the production'
+      setTimeout(() => {
+        GStore.flashMessage = ''
+      }, 1500)
+    }
 }
 </script>
 
