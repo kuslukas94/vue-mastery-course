@@ -1,7 +1,11 @@
 <script>
 import ProductionService from '@/services/productionService.js'
+import ProductionCard from '../components/ProductionCard.vue'
 
 export default {
+  components: {
+    ProductionCard,
+  },
   data() {
     return {
       searchText: '',
@@ -41,16 +45,18 @@ export default {
         return this.productions.filter((production) => {
           return !referenceProductions.some((reference) => {
             const locationMatch = production.location === reference.location
-            const castMatch = reference.cast
-              .split(', ')
-              .some((castName) => production.cast.includes(castName))
-            return locationMatch || castMatch
+            const castMatch = reference.cast.some((referenceActor) =>
+              production.cast.some((actor) => 
+                actor.name === referenceActor.name
+              )
+            )
+          return locationMatch && castMatch
           })
         })
       } catch (error) {
         console.error('Error filtering productions by partial name:', error)
         throw error
-      }
+        }
     }
   },
   mounted() {
@@ -64,11 +70,16 @@ export default {
   <div>
     <input v-model="searchText" @input="filterProductions" placeholder="Enter production name" />
     <h3>Playble productions:</h3>
-    <ul v-if="filteredProductions.length > 0">
+    <div v-if="filteredProductions.length > 0">
+      <ProductionCard v-for="production in filteredProductions" :key="production.id" :production="production"/>
+    </div>
+
+
+    <!-- <ul v-if="filteredProductions.length > 0">
       <li v-for="production in filteredProductions" :key="production.id">
         {{ production.title }}
       </li>
-    </ul>
+    </ul> -->
     <p v-else-if="searchText.length > 0">No other production playable.</p>
   </div>
 </template>
