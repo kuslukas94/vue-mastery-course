@@ -50,7 +50,7 @@ export default {
                 actor.name === referenceActor.name
               )
             )
-          return locationMatch && castMatch
+          return locationMatch || castMatch
           })
         })
       } catch (error) {
