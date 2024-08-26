@@ -1,7 +1,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { inject } from 'vue'
-import ProductionService from '@/services/productionService.js'
+import ProductionService from '@/services/ProductionService.js'
 
 const props = defineProps({
   id: {

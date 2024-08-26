@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, watch, defineProps } from 'vue'
-import ProductionService from '@/services/productionService.js'
+import ProductionService from '@/services/ProductionService.js'
 import EditButton from '@/components/EditButton.vue'
 import DeleteButton from '@/components/DeleteButton.vue'
 

@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, inject } from 'vue'
-import ProductionService from '@/services/productionService.js'
+import ProductionService from '@/services/ProductionService.js'
 import ProductionCard from '@/components/ProductionCard.vue'
 import NotificationComponent from '../components/NotificationComponent.vue'
 import { useRouter } from 'vue-router'

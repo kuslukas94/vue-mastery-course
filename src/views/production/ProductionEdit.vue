@@ -2,7 +2,7 @@
 import { useRouter } from 'vue-router'
 import { reactive, onMounted, inject } from 'vue'
 import FormCard from '@/components/FormCard.vue'
-import ProductionService from '@/services/productionService.js'
+import ProductionService from '@/services/ProductionService.js'
 import NotificationComponent from '@/components/NotificationComponent.vue'
 
 const router = useRouter()

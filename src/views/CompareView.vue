@@ -1,5 +1,5 @@
 <script>
-import ProductionService from '@/services/productionService.js'
+import ProductionService from '@/services/ProductionService.js'
 import ProductionCard from '../components/ProductionCard.vue'
 
 export default {

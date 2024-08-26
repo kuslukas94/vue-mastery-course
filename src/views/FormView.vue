@@ -1,6 +1,6 @@
 <script setup>
 import { reactive, inject } from 'vue'
-import ProductionService from '@/services/productionService.js'
+import ProductionService from '@/services/ProductionService.js'
 import FormCard from '@/components/FormCard.vue'
 import NotificationComponent from '@/components//NotificationComponent.vue'
 
