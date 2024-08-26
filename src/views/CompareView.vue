@@ -66,13 +66,21 @@ export default {
 </script>
 
 <template>
-  <h1>Input production you want to play</h1>
+  <h1>Type production you want to play</h1>
   <div>
     <input v-model="searchText" @input="filterProductions" placeholder="Enter production name" />
     <h3>Playble productions:</h3>
-    <div v-if="filteredProductions.length > 0">
+    <div v-if="filteredProductions.length > 0" class="filtered-productions">
       <ProductionCard v-for="production in filteredProductions" :key="production.id" :production="production"/>
     </div>
     <p v-else-if="searchText.length > 0">No other production playable.</p>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.filtered-productions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
