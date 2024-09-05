@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: $main-font-color;
-  background-color: #faf7f9;
+  background-color: $main-background-color;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +20,7 @@ nav a {
   color: $main-font-color;
 }
 nav a.router-link-exact-active {
-  color: #92a7b6;
+  color: $accent-color;
 }
 h1 {
   text-align: center;

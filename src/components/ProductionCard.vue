@@ -14,8 +14,9 @@ defineProps({
   >
     <div class="production-card">
       <h2>{{ production.title }}</h2>
-      <div>{{ production.category }} , Duration: {{ production.duration }} min</div>
-      <div>{{ production.location }}</div>
+      <div>category: {{ production.category }}</div>
+      <div>duration: {{ production.duration }} min</div>
+      <div>scene: {{ production.location }}</div>
     </div>
   </RouterLink>
 </template>
@@ -27,20 +28,26 @@ defineProps({
 .production-link {
   text-decoration: none;
 }
+.production-card h2 {
+  width: 40%;
+}
+.production-card div {
+  width: 20%;
+}
 .production-card {
-  padding: 20px;
-  width: 250px;
+  padding: 0 20px 0 20px;
+  width: 80vw;
   cursor: pointer;
   @include border-card;
   background-color: $main-background-color;
   color: $main-font-color;
-}
-.production-card h2 {
-  margin-top: 3px;
+  display: flex;
+  align-items: center;
 }
 .production-card:hover {
-  transform: scale(1.01);
+  transform: scale(1.02);
+  transition: 500ms;
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);
-  background-color: $accent-color;
+  background-color: $accent;
 }
 </style>

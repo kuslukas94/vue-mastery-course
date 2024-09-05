@@ -26,7 +26,10 @@ onMounted(() => {
   <div class="layout">
     <h1>Repertoir</h1>
     <div class="productions">
-      <ProductionCard v-for="production in data" :key="production.id" :production="production" />
+      <ProductionCard 
+      v-for="production in [...data].sort((a,b) => a.title.localeCompare(b.title))" 
+      :key="production.id" 
+      :production="production" />
     </div>
   </div>
 </template>
@@ -39,6 +42,6 @@ onMounted(() => {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 10px;
 }
 </style>

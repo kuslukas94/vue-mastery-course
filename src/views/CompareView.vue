@@ -17,6 +17,7 @@ export default {
     async fetchProductions() {
       try {
         this.productions = await ProductionService.fetchData()
+        this.filterProductions()
       } catch (error) {
         console.error('Error loading productions:', error)
       }
@@ -28,8 +29,9 @@ export default {
       }
       try {
         this.filteredProductions = await this.filterProductionsByPartialTitle(
-          this.searchText.trim()
+          this.searchText.trim(),
         )
+        sessionStorage.setItem('filteredProductions', JSON.stringify(this.filteredProductions))
       } catch (error) {
         console.error('Error filtering productions:', error)
       }
@@ -60,27 +62,60 @@ export default {
     }
   },
   mounted() {
-    this.fetchProductions()
+    this.fetchProductions();
+    const inputData = sessionStorage.getItem('searchText')
+    const filteredData = sessionStorage.getItem('filteredProductions')
+    if (inputData) {
+      this.searchText = JSON.parse(inputData)
+      this.filterProductions()
+    }
+    if (filteredData) {
+      this.filteredProductions = JSON.parse(filteredData)
+    }
+  },
+  watch: {
+    searchText(newValue) {
+      sessionStorage.setItem('searchText', JSON.stringify(newValue))
+      this.filterProductions()
+    }
   }
 }
 </script>
 
 <template>
   <h1>Type production you want to play</h1>
-  <div>
-    <input v-model="searchText" @input="filterProductions" placeholder="Enter production name" />
-    <h3>Playble productions:</h3>
+  <input v-model="searchText" @input="filterProductions" placeholder="Enter production name" />
+  <h3>Also playble productions:</h3>
+  <div class="layout-compare">
     <div v-if="filteredProductions.length > 0" class="filtered-productions">
-      <ProductionCard v-for="production in filteredProductions" :key="production.id" :production="production"/>
+      <ProductionCard 
+      v-for="production in [...filteredProductions].sort((a,b) => a.title.localeCompare(b.title))" 
+      :key="production.id" 
+      :production="production"/>
     </div>
     <p v-else-if="searchText.length > 0">No other production playable.</p>
   </div>
 </template>
 
 <style lang="scss" scoped>
+@import '../styles/variables';
+
+input {
+  width: 100%;
+  max-width: 300px;
+  height: 2rem;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid $secondary;
+}
+.layout-compare {
+  text-align: left;
+}
 .filtered-productions {
   display: flex;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 </style>

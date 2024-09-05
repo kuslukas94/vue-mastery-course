@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, watch, defineProps } from 'vue'
+import { useRouter } from 'vue-router'
 import ProductionService from '@/services/ProductionService.js'
 import EditButton from '@/components/EditButton.vue'
 import DeleteButton from '@/components/DeleteButton.vue'
@@ -10,7 +11,6 @@ const props = defineProps({
     required: true
   }
 })
-
 const production = ref(null)
 
 const loadProductionData = async (id) => {
@@ -22,6 +22,11 @@ const loadProductionData = async (id) => {
   } catch (error) {
     console.error('Error loading production data:', error)
   }
+}
+
+const router = useRouter()
+const goBack = () => {
+  router.go(-1)
 }
 
 onMounted(() => {
@@ -44,6 +49,9 @@ watch(
       <EditButton />
       <DeleteButton :id="props.id" />
     </div>
+    <div class="button-nav">
+      <button @click="goBack">↩︎</button>
+    </div>
     <h1>{{ production.title }}</h1>
     <p><b>Category:</b> {{ production.category }}</p>
     <p><b>Duration:</b> {{ production.duration }} min</p>
@@ -60,8 +68,7 @@ watch(
 @import '../../styles/mixins';
 
 .layout {
-  background-color: $main-background-color;
-  padding-top: 1rem;
+  background-color: $accent;
   padding-bottom: 2rem;
   width: 98vw;
   @include border-card;
@@ -71,7 +78,7 @@ watch(
   display: flex;
   justify-content: end;
   align-items: end;
-  top: 53px;
+  top: 3rem;
   right: 5rem;
   gap: 20px;
 }
