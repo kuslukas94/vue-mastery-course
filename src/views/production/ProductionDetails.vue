@@ -46,11 +46,9 @@ watch(
 <template>
   <div class="layout" v-if="production">
     <div class="button-container">
-      <EditButton />
-      <DeleteButton :id="props.id" />
-    </div>
-    <div class="button-nav">
-      <button @click="goBack">↩︎</button>
+      <button @click="goBack" class="button-nav" title="Back">↩︎</button>
+      <EditButton title="Edit"></EditButton>
+      <DeleteButton :id="props.id" title="Delete"></DeleteButton>
     </div>
     <h1>{{ production.title }}</h1>
     <p><b>Category:</b> {{ production.category }}</p>
@@ -77,9 +75,15 @@ watch(
   position: relative;
   display: flex;
   justify-content: end;
-  align-items: end;
+  align-items: center;
   top: 3rem;
-  right: 5rem;
-  gap: 20px;
+  right: 4rem;
+  gap: 1rem;
+}
+.button-nav {
+  @include my-buttons;
+}
+.button-nav:hover {
+  @include my-buttons-hover;
 }
 </style>

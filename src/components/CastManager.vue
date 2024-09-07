@@ -28,6 +28,9 @@ const removeActor = (index) => {
 </template>
 
 <style lang="scss" scoped>
+@import '../styles/variables';
+@import '../styles/mixins';
+
 .cast-entry {
   height: 100%;
   width: 100%;
@@ -46,5 +49,23 @@ input {
   border-radius: 5px;
   border: 1px solid #ccc;
 }
-
+.small-button {
+  border-radius: 5px;
+  border: 1px solid $secondary;
+  font-size: 14px;
+  background-color: $main-background-color;
+  cursor: pointer;
+  width: 20%;
+  height: 2rem;
+}
+.small-button:hover {
+  background-color: $secondary;
+  color: $main-background-color;
+}
+.delete-button {
+  @include my-buttons;
+}
+.delete-button:hover {
+  @include my-buttons-hover;
+}
 </style>

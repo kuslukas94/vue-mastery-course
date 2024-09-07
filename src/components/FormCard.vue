@@ -35,7 +35,7 @@ const { productions, onSubmit } = toRefs(props)
     <CastManager :productions="productions" />
     
     <!-- SUBMIT FORM-->
-    <input type="submit" class="button" value="SUBMIT" />
+    <input type="submit" class="submit-button" value="SUBMIT" />
   </form>
 </template>
 
@@ -53,10 +53,10 @@ const { productions, onSubmit } = toRefs(props)
   padding: 2rem;
   width: 50vw;
   max-width: 600px;
-  background-color: $main-background-color;
+  background-color: $accent;
   border-radius: 10px;
-  border: 1px solid rgba(128, 128, 128, 0.605);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid $primary;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
   font-weight: 500;
 }
 
@@ -76,20 +76,21 @@ select {
   height: 2.5rem;
 }
 
-.button {
+.submit-button {
   margin-top: 1rem;
   border-radius: 5px;
   border: 1px solid #788b7f;
   font-size: 14px;
   font-weight: 600;
-  background-color: $button-color;
+  background-color: $submit-button-background;
   cursor: pointer;
   width: 100%;
   height: 2.5rem;
 }
 
-.button:hover {
+.submit-button:hover {
   background-color: $accent-color;
-  color: $button-hover-color;
+  color: $main-background-color;
+  border-color: $primary;
 }
 </style>

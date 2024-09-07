@@ -32,5 +32,17 @@ const deleteProduction = async () => {
 </script>
 
 <template>
-  <button @click="deleteProduction" class="button">❌</button>
+  <button @click="deleteProduction" class="delete-button">❌</button>
 </template>
+
+<style lang="scss" scoped>
+@import '../styles/mixins';
+@import '../styles/variables';
+
+.delete-button {
+  @include my-buttons;
+}
+.delete-button:hover {
+  @include my-buttons-hover;
+}
+</style>
