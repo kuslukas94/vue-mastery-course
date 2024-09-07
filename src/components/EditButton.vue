@@ -11,7 +11,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <router-link :to="{ name: 'production-edit', params: { id } }" class="edit-button"
+  <router-link :to="{ name: 'production-edit', params: { id } }" class="edit-button" title="Edit"
     >🛠️</router-link
   >
 </template>

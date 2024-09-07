@@ -6,10 +6,10 @@
   text-decoration: none;
   text-align: center;
   font-size: 15px;
-  cursor: default;
-  background-color: $main-background-color;
-  border-radius: 25%;
-  border: 1px solid $button-color;
+  color: $button-text;
+  background-color: $button-background;
+  border-radius: 3px;
+  border: 1px solid $button-border;
   height: 30px;
   width: 30px;
   display: flex;
@@ -18,8 +18,9 @@
   transition:
     background-color 0.3s,
     border-color 0.3s;
+  cursor: pointer;
 }
 @mixin my-buttons-hover {
-  background-color: $accent-color;
-  border-color: $button-hover-color;
+  background-color: $button-bg-hover;
+  border-color: $button-border-hover;
 }

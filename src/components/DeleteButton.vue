@@ -32,7 +32,7 @@ const deleteProduction = async () => {
 </script>
 
 <template>
-  <button @click="deleteProduction" class="delete-button">❌</button>
+  <button @click="deleteProduction" class="delete-button" title="Delete">❌</button>
 </template>
 
 <style lang="scss" scoped>

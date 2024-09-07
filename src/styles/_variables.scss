@@ -1,10 +1,20 @@
-$main-background-color: #ffffff;
-$accent-color: #a49ede;
-$button-color: #a49ede;
-$button-hover-color: #796fd7;
-$main-font-color: #050316;
-$submit-button-background: rgb(159, 207, 159);
+// MAIN COLORS
+$text: #050316;
+$background: #f4f4f6;
+$primary: #ff1a62;
+$secondary: #ff3d7e;
+$accent: #ea4d6f;
+// BUTTONS
+$button-background: $background;
+$button-text: $text;
+$button-border: $accent;
+// BUTTON HOVER
+$button-bg-hover: $secondary;
+$button-border-hover: $background;
+// SUBMIT BUTTON
+$submit-button-bg: rgb(113, 198, 113);
+$submit-button-border: rgb(15, 105, 15);
+// SUBMIT BUTTON HOVER
+$submit-button-bg-hover:rgb(126, 218, 126);
+$submit-button-border-hover: rgb(115, 124, 115);
 
-$primary: #5b51b8;
-$secondary: #a49ede;
-$accent: #796fd7;

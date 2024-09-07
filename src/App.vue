@@ -6,6 +6,7 @@ import { RouterLink, RouterView } from 'vue-router'
   <div class="layout">
     <header>
       <div class="wrapper">
+        <a href="https://divadlo-radost.cz/" target="blank"><img src="/logo.jpg" alt="Logo Divadlo Radost" class="my-logo"></a>
         <nav>
           <RouterLink :to="{ name: 'production-list' }">Repertoir</RouterLink> |
           <RouterLink :to="{ name: 'form' }">Add new</RouterLink> |

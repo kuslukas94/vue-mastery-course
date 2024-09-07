@@ -1,30 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Noto%20Sans%20Linear%20B:700|Noto%20Sans%20Linear%20B:400');
 @import './variables';
 @import './mixins';
 
 body {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Noto Sans Linear B';
+  font-weight: 400;
   text-align: center;
-  color: $main-font-color;
-  background-color: $main-background-color;
+  color: $text;
+  background-color: $background;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor:default;
+}
+h1, h2, h3, h4, h5 {
+  font-family: 'Noto Sans Linear B';
+  font-weight: 700;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.my-logo {
+  height: 80px;
+  margin-left: -11rem;
+  margin-right: 11rem;
 }
 nav {
   padding: 30px;
 }
 nav a {
   font-weight: bold;
-  color: $main-font-color;
+  color: $text;
+  text-decoration: none;
+}
+nav a:hover {
+  color: $accent;
 }
 nav a.router-link-exact-active {
-  color: $accent-color;
+  color: $accent;
 }
+// FONT SIZES
+html {font-size: 100%;} /* 16px */
+
 h1 {
+  font-size: 2.210rem;
   text-align: center;
 }
-h2 {
-  font-size: 20px;
-}
+
+h2 {font-size: 1.158rem;}
+
+h3 {font-size: 1rem;}
+
+h4 {font-size: 0.987rem;}

@@ -39,8 +39,8 @@ defineProps({
   width: 80vw;
   cursor: pointer;
   @include border-card;
-  background-color: $main-background-color;
-  color: $main-font-color;
+  background-color: $background;
+  color: $text;
   display: flex;
   align-items: center;
 }

@@ -29,7 +29,7 @@ const GStore = inject('GStore')
   color: #fff;
   font-size: 20px;
   font-weight: 600;
-  background-color: $accent-color;
+  background-color: $accent;
   @include border-card;
   animation: notification-animation 1.5s ease-out;
 }

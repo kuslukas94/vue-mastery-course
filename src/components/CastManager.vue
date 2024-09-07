@@ -47,20 +47,21 @@ input {
   height: 1.5rem;
   text-align: center;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid $secondary;
 }
 .small-button {
   border-radius: 5px;
   border: 1px solid $secondary;
   font-size: 14px;
-  background-color: $main-background-color;
+  background-color: $background;
   cursor: pointer;
   width: 20%;
   height: 2rem;
 }
 .small-button:hover {
-  background-color: $secondary;
-  color: $main-background-color;
+  background-color: $accent;
+  color: $background;
+  border-color: $background;
 }
 .delete-button {
   @include my-buttons;

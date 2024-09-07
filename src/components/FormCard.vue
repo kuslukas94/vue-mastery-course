@@ -53,7 +53,7 @@ const { productions, onSubmit } = toRefs(props)
   padding: 2rem;
   width: 50vw;
   max-width: 600px;
-  background-color: $accent;
+  background-color: $secondary;
   border-radius: 10px;
   border: 1px solid $primary;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
@@ -79,18 +79,19 @@ select {
 .submit-button {
   margin-top: 1rem;
   border-radius: 5px;
-  border: 1px solid #788b7f;
+  border: 1px solid $submit-button-border;
   font-size: 14px;
   font-weight: 600;
-  background-color: $submit-button-background;
+  background-color: $submit-button-bg;
   cursor: pointer;
   width: 100%;
   height: 2.5rem;
+  color: $background;
 }
 
 .submit-button:hover {
-  background-color: $accent-color;
-  color: $main-background-color;
-  border-color: $primary;
+  background-color: $submit-button-bg-hover;
+  border-color: $submit-button-border-hover;
+  color: $text;
 }
 </style>

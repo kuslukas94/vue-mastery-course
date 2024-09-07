@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, watch, defineProps } from 'vue'
-import { useRouter } from 'vue-router'
 import ProductionService from '@/services/ProductionService.js'
+import BackButton from '../../components/BackButton.vue'
 import EditButton from '@/components/EditButton.vue'
 import DeleteButton from '@/components/DeleteButton.vue'
 
@@ -24,11 +24,6 @@ const loadProductionData = async (id) => {
   }
 }
 
-const router = useRouter()
-const goBack = () => {
-  router.go(-1)
-}
-
 onMounted(() => {
   loadProductionData(props.id)
 })
@@ -46,9 +41,9 @@ watch(
 <template>
   <div class="layout" v-if="production">
     <div class="button-container">
-      <button @click="goBack" class="button-nav" title="Back">↩︎</button>
-      <EditButton title="Edit"></EditButton>
-      <DeleteButton :id="props.id" title="Delete"></DeleteButton>
+      <BackButton></BackButton>
+      <EditButton></EditButton>
+      <DeleteButton :id="props.id"></DeleteButton>
     </div>
     <h1>{{ production.title }}</h1>
     <p><b>Category:</b> {{ production.category }}</p>
@@ -79,11 +74,5 @@ watch(
   top: 3rem;
   right: 4rem;
   gap: 1rem;
-}
-.button-nav {
-  @include my-buttons;
-}
-.button-nav:hover {
-  @include my-buttons-hover;
 }
 </style>
